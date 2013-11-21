@@ -1,0 +1,7 @@
+# These two lines are what I have in my crontab file for scheduling to run the monitoring script.
+# I have it run every 10 minutes and export the messages to a log.
+# The MAILTO line may be necessary depending on how your send email program is setup.
+# In my case I needed it for email to send correctly.
+
+MAILTO=email@company.com
+0,10,20,30,40,50 * * * * /home/user/gmod_restart.sh >> /home/user/gm_restart.log 2>&1
