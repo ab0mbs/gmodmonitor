@@ -20,6 +20,11 @@ Prerequisites:
   * SSH installed on the Gmod server running windows. This can be downloaded.
   
 
+Example of server setup and how I have things setup
+------------
+Local Ubuntu Linux Server at home running Lynx and ssmtp to send mail
+Windows Server 2008 R2 VPS running Gmod, IIS with PHP, and Powershell.
+
 Repo Layout
 --------------
 
