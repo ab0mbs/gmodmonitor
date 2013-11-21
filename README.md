@@ -16,9 +16,8 @@ Prerequisites:
   Currently, a Linux server is needed to monitor the Gmod server running on windows.
 
   * Linux Server to run monitoring with lynx and optionally a program of your choice to send email. I'm using ssmtp
-  * Website with PHP. This can run on the monitoring server or on the server running gmod. This will be used to query the status of the server.
+  * Windows Server running Gmod, IIS with PHP installed, and Powershell. This will be used to query the status of the server.
   * SSH installed on the Gmod server running windows. This can be downloaded.
-  * Windows Gmod server needs to have Powershell installed.
   
 
 Repo Layout
