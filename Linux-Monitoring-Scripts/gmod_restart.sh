@@ -1,15 +1,24 @@
 #!/bin/bash
 
+# This script run on the monitoring server and checks to see if the server is "Alive"
+# If the server is down, it attempts to kill the Gmod process on the server which forces the local Gmod restart script to restart the server
+# This script will then email you to let you know your server crashed and what the outcome is.
+# Either the server is "RUNNING" or "SERVER DOWN"
+
 #Set variables 
 DATE="`date +%c`"
+
+#Change the "0.0.0.0" to your Gmod servers IP address. A DNS address should also work here.
 ip_addr="0.0.0.0"
 inc=1
 srvtest=0
 srv_connection="NULL"
 count=3
+
+#This is pulling the pid of the process from the Gmod server. This url will be dependent on how you set things up.
 gmod_pid="`lynx -dump \"http://example.com/gmod_pid.txt\"`"
 
-#Test server port
+#Test server status. This checking a php page that will query the server to check if it's alive.
 lynx -dump "http://example.com/gmod_query.php" | grep 'Alive' >/dev/null
 
 #Check if server failed test
@@ -18,7 +27,7 @@ if [ $? = "1" ]; then
 #Echo server failure to log
 echo $DATE: Connection Failed - Restarting Gmod Server
 
-#Attempt to restart server
+#Attempt to restart server. This will ssh into your server and kill the Gmod process, letting the local restart script kick in.
 ssh User@$ip_addr "taskkill /f /pid $gmod_pid" < /dev/null > /dev/null 2>&1 &
 
 #Perform up to 10 tests to check if server is not active
